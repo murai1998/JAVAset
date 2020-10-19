@@ -1,0 +1,48 @@
+CREATE TABLE Customers(CustomerID NUMBER, CustomerName VARCHAR(40), ContactName VARCHAR(40), Address VARCHAR(40), City VARCHAR(20), PostalCode NUMBER, Country VARCHAR(20));
+INSERT INTO Customers VALUES(1, 'Alfreds Futterkiste', 'Maria Anders', 'Obere Str. 57', 'Berlin', 12209, 'Germany');
+INSERT INTO Customers VALUES(2, 'Ana Trujillo Emparedados', 'Ana Trujillo', 'Avda. de la Constitución 2222', 'México D.F.', 05021, 'Mexico');
+INSERT INTO Customers VALUES(3, 'Antonio Moreno Taquería', 'Antonio Moreno', 'Mataderos 2312', 'México D.F.', 05023, 'Mexico');
+INSERT INTO Customers VALUES(4, 'Around the Horn', 'Thomas Hardy', '120 Hanover Sq.', 'London', 23456, 'UK');
+INSERT INTO Customers VALUES(5, 'Berglunds snabbköp', 'Christina Berglund', 'Berguvsvägen 8', 'Luleå', 87654, 'Sweden');
+
+
+
+SELECT DISTINCT * FROM Customers;
+SELECT CustomerID, CustomerName, Country FROM Customers;
+SELECT DISTINCT CustomerID, CustomerName, Country FROM Customers;
+SELECT DISTINCT CustomerID, CustomerName, Country FROM Customers ORDER BY CustomerID;
+
+SELECT COUNT(DISTINCT Country) FROM Customers;
+SELECT CustomerID, CustomerName, Country FROM Customers WHERE Country='Mexico';
+SELECT DISTINCT CustomerID, CustomerName, Country FROM Customers WHERE Country='Mexico';
+SELECT DISTINCT CustomerID, CustomerName, Country FROM Customers WHERE Country='Mexico' AND NOT CUSTOMERID=2;
+
+
+
+SELECT * FROM Customers;
+SELECT DISTINCT * FROM Customers ORDER BY CustomerID DESC;
+SELECT DISTINCT * FROM Customers ORDER BY CustomerID DESC, Country ASC;
+
+INSERT INTO Customers VALUES(6, 'Berglunds snabbköp99', 'Christina', 'Berguvsvä', 'Luleå', 87654);
+
+SELECT * FROM Customers WHERE Country IS NULL;
+UPDATE Customers SET CustomerName='KATE DAVIDSON', Country='GREAT BRITAIN' WHERE CustomerID=1;
+SELECT DISTINCT * FROM Customers;
+
+
+
+
+SELECT * FROM Customers;
+SELECT MIN(PostalCode)
+FROM Customers;
+
+SELECT MIN(PostalCode) AS Minimum
+FROM Customers;
+
+SELECT * FROM Customers WHERE PostalCode IN (SELECT MIN(PostalCode)
+FROM Customers);
+
+
+SELECT DISTINCT * FROM Customers WHERE PostalCode IN (SELECT MIN(PostalCode) AS Minimum
+FROM Customers);
+
