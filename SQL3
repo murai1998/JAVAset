@@ -1,0 +1,7 @@
+CREATE TABLE People(ID int NOT NULL PRIMARY KEY, LastName VARCHAR(25), FirstName  VARCHAR(25), Age int);
+INSERT INTO People VALUES(1, 'Corey', 'John', 38);
+INSERT INTO People VALUES(2, 'Smith', 'David', 24);
+INSERT INTO People VALUES(3, 'Carlos', 'Carton', 38);
+INSERT INTO People VALUES(4, 'Ella', 'Brown', 38);
+
+SELECT * FROM People;
