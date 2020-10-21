@@ -25,3 +25,9 @@ SELECT * FROM People;
 SELECT * FROM Employee;
 
 SELECT p.Name, p.Age, e.JobTitle FROM People p JOIN Employe e ON (p.ID = e.PeopleID);
+
+
+SELECT * FROM People;
+SELECT * FROM Employee;
+
+SELECT p.ID, p.Name, p.Age, e.JobTitle FROM People p JOIN Employee e ON (p.ID = e.PeopleID) ORDER BY p.ID;
