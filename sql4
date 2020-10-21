@@ -1,0 +1,27 @@
+
+
+
+-- CREATE TABLE Employee(EmID int, PeopleID int, JobTitle VARCHAR(30));
+
+
+-- INSERT INTO Employee VALUES(1, 1, 'Teacher');
+-- INSERT INTO Employee VALUES(2, 2, 'Doctor');
+-- INSERT INTO Employee VALUES(3, 3, 'Designer');
+-- INSERT INTO Employee VALUES(4, 4, 'Developer');
+
+-- SELECT * FROM Employee;
+
+
+
+-- CREATE TABLE People( ID int NOT NULL PRIMARY KEY, Name VARCHAR(40), Age int);
+
+-- INSERT INTO People VALUES(1, 'David Brown', 45);
+-- INSERT INTO People VALUES(2, 'Cormoran Black', 36);
+-- INSERT INTO People VALUES(3, 'Sean Stellan', 38);
+-- INSERT INTO People VALUES(4, 'Mary Gurama', 29);
+-- INSERT INTO People VALUES(5, 'Kate Lock', 54);
+
+SELECT * FROM People;
+SELECT * FROM Employee;
+
+SELECT p.Name, p.Age, e.JobTitle FROM People p JOIN Employe e ON (p.ID = e.PeopleID);
