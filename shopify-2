@@ -1,0 +1,93 @@
+{% assign variable = 'Hello' %}
+
+
+{% assign array_number = 'Kate,Bill,Syu,Oran,David'%}
+{% assign array = array_number | split:',' %}
+
+
+<ul>
+  {% for number in array %}
+  {% if number.size >= 5%}
+  <li>{{number}}</li>
+  {%endif%}
+  {% endfor%}
+</ul>
+{{variable}}
+
+
+{% assign collection = collections['all']%}
+<h2> This is a new collection, {{collection.title}}</h2>
+{%for product in collection.products %}
+{% for tag in product.tags %}
+  {{ tag }}
+{% endfor %}
+
+{% unless section.settings.hide_soldout != false and product.available != true %}
+<p>Content: <a href={{ product | img_url }}>Image<a/></p>
+<li><a href={{product.url}}>{{product.title}}</a> - {{product.price | money}}
+ {% unless product.available %} 
+  (SOLD OUT)
+  {% endunless %}
+  </li>
+{% endunless %}
+{% endfor %}
+
+
+  
+  {% assign collection2 = collections['empty'] %}
+{% for product in collection2.products %}
+{{product.title}}
+  {% else %}
+<p>Nothing to show</p>
+
+{% endfor %}
+
+{% for i in (10..15) %}
+{% if i == 14 %}
+{% break %}
+{% else  %}
+{{i}}, 
+{%endif%}
+{% endfor %}
+
+
+
+<p>
+
+{% assign limit = 5 %}
+
+{% for i in (1..limit)  %}
+{{i | split: ','}}
+
+{% endfor %}
+
+
+
+</p>
+
+<table style="background: red">
+  {% tablerow product in collection.products cols:2 %}
+    {{ product.title }}
+  {% endtablerow %}
+</table>
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+    { 
+     "type": "checkbox",
+     "id": "hide_soldout",
+     "label": "Show sold out products",
+      "default": false
+     
+     }
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
