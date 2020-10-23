@@ -1,0 +1,197 @@
+{% assign variable = 'Hello' %}
+
+
+{% assign array_number = 'Kate,Bill,Syu,Oran,David'%}
+{% assign array = array_number | split:',' %}
+
+
+<ul>
+  {% for number in array %}
+  
+  <li>{{number}}</li>
+
+  {% endfor%}
+</ul>
+{{variable}}
+
+
+{% assign collection = collections['all']%}
+<h2> This is a new collection, {{collection.title}}</h2>
+{%for product in collection.products %}
+{% for tag in product.tags %}
+  {{ tag }}
+{% endfor %}
+
+{% unless section.settings.hide_soldout != false and product.available != true %}
+<p>Content: <a href={{ product | img_url }}>Image<a/></p>
+  {% if product.featured_media.media_type == "image" %}
+  
+  <img src={{ product.featured_media | img_url: image_size: "104x"  }}/>
+{% endif %}
+<li><a href={{product.url}}>{{product.title}}</a> - {{product.price | money_with_currency}} - {{product.published_at | time_tag: time_tag: '%a, %b %d, %Y', datetime: '%Y-%m-%d'}}
+ {% unless product.available %} 
+  (SOLD OUT)
+  {% endunless %}
+  </li>
+{% endunless %}
+{% endfor %}
+
+
+  
+  {% assign collection2 = collections['all'] | sort: 'title' %}
+{% for product in collection2.products   %}
+  <li>{{product.title}},   {{product.price}}, </li>
+ 
+
+{% endfor %}
+
+{% for i in (10..15) %}
+{% if i == 14 %}
+{% break %}
+{% else  %}
+{{i}}, 
+{%endif%}
+{% endfor %}
+
+
+
+<p>
+
+{% assign limit = 5 %}
+
+{% for i in (1..limit)  %}
+{{i | split: ','}}
+
+{% endfor %}
+
+
+
+</p>
+
+<table style="background: red">
+  {% tablerow product in collection.products cols:2 %}
+    {{ product.title }}
+  {% endtablerow %}
+</table>
+
+
+
+
+
+<p>
+  
+  {% assign arr = (1..8)%}
+  {{ arr | last}}
+  
+<p>
+
+</p>
+{% assign start = 1 %}
+{% increment start%}
+  {% increment start%}
+  {% increment start%}
+  {% increment start%}
+  {%for i in fruits %} 
+  <li>{{i}}</li>
+  {% endfor %}
+</p>
+
+<p>
+   {% assign veggies = 'avocado, carrot, potato' | split: ', ' %}
+  {% assign fruits = 'apple, pineapple, mango, banana' | split: ', '%}
+  
+  {% assign plants = veggies | concat: fruits %}
+  {{ veggies | reverse | join: ', '}}
+ 
+<p/>
+
+<h1>Form</h1>
+{% form 'currency' %}
+   {{ form | currency_selector: class: 'my_special_class', id: 'Submit'  }}
+{% endform %}
+
+
+{% form 'currency' %}
+  {{ form | currency_selector }}
+  <button type="submit">Submit</button>
+{% endform %}
+
+{{ 'shop.js' | asset_url | script_tag }}
+
+
+
+
+
+{% form 'currency' %}
+  <select name="currency">
+    {% for currency in shop.enabled_currencies %}
+      {% if currency == cart.currency %}
+        <option selected="true">{{currency.iso_code}}</option>
+      {% else %}
+        <option>{{currency.iso_code}}</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+  <button type="submit">Submit</button>
+{% endform %}
+
+
+
+
+
+<p style="font-size: 2em">Math filters<p>
+<p>
+{% assign num = 4.3 %}
+  Ceil from 4.3 => {{num | ceil}}
+  </p>
+  {% assign num2 = 4.5688%}
+  <p>Round {{num2}} to 2 decimals => {{num2 | round: 2}}</p>
+
+
+
+<p style="font-size: 2em">String filters<p>
+
+<p>
+
+{% capture cap  %}
+One two tree
+
+{% endcapture %}
+  Break
+{{cap | newline_to_br}}
+</p>
+<p>
+  Pluralize:
+{% assign num3 = 1%}
+{{num3}} {{num3  | pluralize: 'item', 'items'}}
+
+</p>
+
+<P> Replace:
+{%assign s2 = 'This is a beautiful day'%}
+  {{s2 | replace: 'beautiful', 'cold'}}
+
+</P>
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+    { 
+     "type": "checkbox",
+     "id": "hide_soldout",
+     "label": "Show sold out products",
+      "default": false
+     
+     }
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
