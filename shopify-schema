@@ -1,0 +1,46 @@
+<div class="rich-text page-width">
+  <div class="grid">
+    <div class="grid__item rte text-center">
+      
+        <h2 class="rich-text__heading">{{ section.settings.section_title | escape }}</h2>
+      
+       <p>{{section.settings.ptag}}</p>
+    </div>
+   
+  </div>
+</div>
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": [
+
+{
+      "id": "section_title",
+      "type": "text",
+      "label": "Heading",
+      "default": "Shipping details during Covid-19"
+},
+
+    {
+ "id": "ptag",
+      "type": "richtext",
+     
+      "label": "text",
+"default": "<p>All our shipping options have resumed. We have additional health and safety measures in place to protect our logistics team, including staggered break times, expanded workspaces and increased cleanings.</p>"
+}
+
+]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
