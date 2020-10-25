@@ -1,0 +1,64 @@
+<div style="margin: 2em" id='section-cta text-center'>
+  
+<div class="section-header text-center" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center">
+ <img src={{ block.settings.image}} style="width: 300px; height: 300px">
+      
+
+  </div>
+
+</div>
+
+
+
+
+
+
+{% schema %}
+  {
+   "name":"CTA Blocks",
+   "max_blocks":6,
+   "settings":[
+      {
+         "id":"text-box",
+         "type":"text",
+         "label":"heading",
+         "default":"Title"
+      }
+   ],
+   "blocks":[
+      {
+         "type":"select",
+         "name":"select",
+         "settings":[
+            {
+               "id":"image",
+               "type":"url",
+               "label":"Add image"
+               
+            }
+
+
+
+         ]
+      }
+   ],
+   "presets":[
+      {
+         "name":"Add a new image",
+         "category":"Call to action",
+         "blocks":[
+            {
+               "type":"select"
+            }
+        
+         ]
+      }
+   ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
